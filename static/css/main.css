@@ -1,6 +1,6 @@
 /* global styles */
 h1, h2, h3, h4, h5, h6 {
-	font-weght: bold;
+	font-weight: bold;
 }
 
 .alert {
@@ -16,9 +16,69 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 30px;
 }
 
+#group-selector_rest {
+	margin-top: 5px;
+}
+
+#group-selector_rest select{
+	margin: 0;
+	width: 91%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color: #555555;
+}
+
+#input-text-additional {
+	margin: 0;
+	width: 25%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 100px;
+	line-height: 30px;
+	color: #555555;	
+	text-align: left;
+	padding-bottom: 8%;
+}
+
+#end{
+	background-color: rgb(214,208,200);
+}
+
 #group-selector select {
 	margin: 0;
 	width: 80%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color: #555555;
+}
+
+#glyphicon {
+	position: relative;
+    left: 50%;
+}
+
+#checkbox {
+	background-color: #fafafa;
+}
+
+#t3 {
+	background-color: #fafafa;
+	height: 30px;
+}
+
+
+
+#t123 {
+	text-align: right;
+}
+
+#input-text {
+	margin: 0;
+	width: 25%;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	height: 30px;
