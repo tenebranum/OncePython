@@ -1,3 +1,4 @@
+from django.conf import global_settings
 """
 Django settings for studentsdb project.
 
@@ -18,6 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'j-wcrtozkd3_c9o(-#k7yqcbld&d)xgwcy#5$a1lo0mk!m#ikb'
+
+TEMPLATE_CONTEXT_PROCESSORS = \
+    global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.core.context_processors.request",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
