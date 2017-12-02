@@ -35,7 +35,7 @@
 	   								</button>
 							<ul class="dropdown-menu" role="menu">
 								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="/journal/student.id">Посещения</a>
+									<a role="menuitem" tabindex="-1" href="{% url 'visitation_edit' student.id %}">Посещения</a>
 								</li>
 								<li role="presentation">
 									<a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}">Редактировать</a>
@@ -50,34 +50,7 @@
 	   					{% endfor %}
 	   		</tbody>
 	   	</table>
-	   	<nav>
-			<ul class="pagination">
-				<li><a href="#">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-		</nav>
+{% include 'students/pagination.html' %}
 {% endblock container %}
-
-	 <!-- end main page content-->
-
-	 <!-- start footer-->
-	 <div class="row" id="footer">
-	  <div class="col-xs-12">
-	   &copy; 2017 Сервис Учета Студентов
-	  </div>
-	 </div>
-	 <!-- end footer-->
-	</div>
-
-
-
-	<!-- JS Section -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-	<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>

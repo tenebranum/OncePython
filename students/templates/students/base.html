@@ -10,9 +10,9 @@
 
 	<link name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{{ PORTAL_URL }}{% static 'css/main.css' %}">
 
-	<style type="text/css"> .col-xs-12, .col-xs-4, .col-xs-8 </style>
+	<style type="text/css"> .col-xs-12, .col-xs-4, .col-xs-8 , .col-xs-5, .col-xs-2 </style>
 
 	{% block extra_css %}{% endblock extra_css %}
 
@@ -24,12 +24,12 @@
 	 <!--logo-->
 	 <div class="row" id="header">
 	  <div class="col-xs-8">
-	   <h1>Сервис Учета Студентов</h1>
+	   <h1>{% block logo %}Сервис Учета Студентов{% endblock logo %}</h1>
 	  </div>
 
 	  <!-- group selector-->
 	  <div class="col-xs-4" id="group-selector">
-	  	<strong>Группа:</strong>
+	  	<strong>{% block group %}Группа:{% endblock group %}</strong>
 	  	<select>
 	  		<option value="">Все студенты</option>
 	  		<option value="">ТА-51, Ваниш Изи (№111)</option>
@@ -44,7 +44,7 @@
 	  <div class="col-xs-12">
 	  	<ul class="nav nav-tabs" role="tablist">
 	  		<li role="presentation" {% if request.path == '/' %} class="active"{% endif %}> <a href="{% url 'home' %}">Студенты</a></li>
-	  		<li role="presentation" {% if '/journal' in request.path %} class="active"{% endif %}> <a href="/journal">Посещения</a></li>
+	  		<li role="presentation" {% if '/visitation' in request.path %} class="active"{% endif %}> <a href="{% url 'visitation' %}">Посещения</a></li>
 	  		<li role="presentation" {% if '/groups' in request.path %} class="active"{% endif %}> <a href="{% url 'groups' %}">Группы</a></li>
 	  	</ul>
 	  </div>
@@ -64,7 +64,7 @@
 	 <!-- start footer-->
 	 <div class="row" id="footer">
 	  <div class="col-xs-12">
-	   &copy; 2017 Сервис Учета Студентов
+	   {% block footer %}&copy; 2017 Сервис Учета Студентов{% endblock footer %}
 	  </div>
 	 </div>
 	 <!-- end footer-->

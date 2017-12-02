@@ -14,6 +14,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -23,6 +26,7 @@ SECRET_KEY = 'j-wcrtozkd3_c9o(-#k7yqcbld&d)xgwcy#5$a1lo0mk!m#ikb'
 TEMPLATE_CONTEXT_PROCESSORS = \
     global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
+    "studentsdb.context_processors.students_proc",
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,6 +35,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+
+PORTAL_URL = 'http://localhost:8000'
 
 
 # Application definition
