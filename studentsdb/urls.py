@@ -1,5 +1,6 @@
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
+from .settings import MEDIA_ROOT, DEBUG
 
 urlpatterns = patterns('',
     # Examples:
@@ -22,5 +23,10 @@ urlpatterns = patterns('',
     url(r'^visitation/$', 'students.packets.visitation.visitation_list', name='visitation'),
     url(r'^visitation/(?P<vid>\d+)/edit/$', 'students.packets.visitation.visitation_edit', name='visitation_edit'),
 
+
     url(r'^admin/', include(admin.site.urls)),
-)	
+)
+
+if DEBUG:
+    urlpatterns+=patterns('',
+        url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':MEDIA_ROOT}))	
