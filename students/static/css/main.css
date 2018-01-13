@@ -7,6 +7,19 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 10px;
 }
 
+.text	 {
+	margin: 0;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color: #555555;
+}
+
+#ajax-progress-indicator {
+	display: none;
+}
+
 #footer {
 	border-top:  1px solid #dddddd;
 	padding-top:  10px;
@@ -56,10 +69,23 @@ h1, h2, h3, h4, h5, h6 {
 	color: #555555;
 }
 
-/*#glyphicon {
-	position: relative;
-    left: 50%;
-}*/
+#student_group {
+	margin-top: 10px;
+}
+
+#student_group select {
+	margin: 0;
+	width: 80%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color: #555555;
+}
+
+#ajax-progress-indicator {
+	display: none;
+}
 
 #checkbox {
 	background-color: #fafafa;
@@ -70,6 +96,9 @@ h1, h2, h3, h4, h5, h6 {
 	height: 30px;
 }
 
+input,textarea,select {
+	max-width: 300px;
+}
 
 
 #t123 {
@@ -78,10 +107,14 @@ h1, h2, h3, h4, h5, h6 {
 
 #input-text {
 	margin: 0;
-	width: 25%;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
-	height: 30px;
-	line-height: 30px;
 	color: #555555;
+}
+
+/*td.day-box,
+th.day-header {
+	padding: 4px!important;
+	vertical-align:middle!important;
+	text-align:center;
 }

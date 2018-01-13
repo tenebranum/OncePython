@@ -1,0 +1,87 @@
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Додати Студента{% endblock meta_title %}
+{% block status_message %}
+		
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+{% block title %}Додати Студента{% endblock title %}
+{% block container %}
+	<form  class="form-horizontal" action="{% url 'students_add' %}" method="post" enctype="multipart/form-data">
+		<div class="form-group {% if errors.first_name %}has-error{% endif %}">
+			<label class='control-label col-sm-2' for="first_name">Имя*</label>
+			<div class="col-sm-10">
+				<input  class='form-control' type="text" value="{{request.POST.first_name}}"  name="first_name" id="first_name" />
+			</div>
+			<span class='help-block'>{{errors.first_name}}</span>
+		</div>
+		<div class="form-group {% if errors.last_name %}has-error{% endif %}">
+			<label class='control-label col-sm-2' for="last_name">Фамилия*</label>
+			<div class="col-sm-10">
+				<input class='form-control' type="text" value="{{request.POST.last_name}}" name="last_name" id="last_name" placeholder="Введіть ваше прізвище" />
+			</div>
+			<span class='help-block'>{{errors.last_name}}</span>
+		</div>
+		<div class="form-group">
+			<label class='control-label col-sm-2' for="middle_name">Отчество</label>
+			<div class="col-sm-10">
+				<input class='form-control' type="text" value="{{request.POST.middle_name}}" name="middle_name" id="middle_name" />
+			</div>		
+		</div>
+		{% csrf_token %}
+		<div class="form-group {% if errors.birthday %}has-error{% endif %}">
+			<label class='control-label col-sm-2' for="birthday">Дата Рождения*</label>
+			<div class="col-sm-10">
+				<input class='dateinput form-control' type="text" value="{{request.POST.birthday}}" name="birthday" id="birthday" placeholder="Напр. 1984-12-30" />
+			</div>
+			<span class='help-block'>{{errors.birthday}}</span>
+		</div>
+		<div class="form-group">
+			<label class='control-label col-sm-2' for="photo">Фото</label>
+			<div class="col-sm-10">
+				<input type="file"  value="{{request.FILES.photo}}" name="photo" id="photo" />
+			</div>
+		</div>
+		<div class="form-group {% if errors.ticket %}has-error{% endif %}">
+			<p></p>
+			<label class='control-label col-sm-2' for="ticket">Билет*</label>
+			<div class="col-sm-10">
+				<input class='form-control' type="text" value="{{request.POST.ticket}}" name="ticket" id="ticket" />
+			</div>
+			<span class='help-block'>{{errors.ticket}}</span>
+		</div>
+		<div class="form-group {% if errors.group %}has-error{% endif %}">
+			<label class='control-label col-sm-2' for="student_group">Группа*</label>
+			<div class="col-sm-10">
+				<select name="student_group" id="student_group">
+					<option value="">Выберите группу</option>
+					{% for gr in groups %}
+					<option value="{{gr.id}}"{% if gr.id == request.POST.student_group|add:0 %}selected='1'{% endif %}>{{gr.name}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<span class='help-block'>{{errors.student_group}}</span>
+		</div>
+		<div class="form-group">
+			<label class='control-label col-sm-2' for="notes">Дополнительные ведомости</label>
+			<div class="col-sm-10">
+				<textarea name="notes" id="notes" class="form-control"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Добавить" name="add_button" />
+			<button type="submit" class="btn btn-link" name="cancel_button">Отменить</button>
+		</div>
+	</form>
+{% endblock container %}
+</body>
+</html>

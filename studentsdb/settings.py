@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
+LANGUAGE_CODE='ru'
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
@@ -28,6 +28,7 @@ TEMPLATE_CONTEXT_PROCESSORS = \
     global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
     "studentsdb.context_processors.students_proc",
+    "students.context_processors.groups_processor",
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,6 +41,19 @@ ALLOWED_HOSTS = []
 PORTAL_URL = 'http://localhost:8000'
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Email settings
+
+ADMIN_EMAIL = 'admin@studentsdb.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'vetal969696@gmail.com'
+EMAIL_HOST_PASSWORD = 'kava98banga'
+EMAIL_TLS = False
+EMAIL_SSL = True
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -50,6 +64,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'students',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +82,54 @@ ROOT_URLCONF = 'studentsdb.urls'
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
 
+LOG_FILE = os.path.join(BASE_DIR,'studentsdb.log')
+
+LOGGING = {
+    'version':1,
+    'disable_existing_loggers':True,
+    'formatters':{
+        'verbose':{
+            'format':'%(levelname)s %(asctime)s %(module)s: %(message)s'
+            },
+        'simple':{
+            'format':'%(levelname)s: %(message)s'
+            },
+    },
+    'handlers':{
+        'null':{
+            'level':'DEBUG',
+            'class':'logging.NullHandler',
+        },
+        'console':{
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+            'formatter':'verbose'
+        },
+        'file':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':LOG_FILE,
+            'formatter':'verbose'
+        },
+    },
+    'loggers':{
+        'django':{
+            'handlers':['null'],
+            'propagate':True,
+            'level':'INFO',
+        },
+        'students.signals':{
+            'handlers':['console','file'],
+            'level':'INFO',
+        },
+        'students.packets.contact_admin':{
+            'handlers':['console','file'],
+            'level':'INFO',
+        }
+    }
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -75,7 +138,6 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

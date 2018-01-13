@@ -1,6 +1,10 @@
 from django.conf.urls import include, patterns, url
-from django.contrib import admin
+#from django.contrib import admin
 from .settings import MEDIA_ROOT, DEBUG
+from students.packets.students import StudentUpdateView, StudentDeleteView
+from students.packets.journal import JournalView
+from students.packets.groups import GroupsUpdateView, GroupsDeleteView
+import django
 
 urlpatterns = patterns('',
     # Examples:
@@ -10,21 +14,23 @@ urlpatterns = patterns('',
     #Students urls
     url(r'^$', 'students.packets.students.students_list', name='home'),
     url(r'^students/add/$','students.packets.students.students_add', name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$', 'students.packets.students.students_edit', name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$', 'students.packets.students.students_delete', name='students_delete'),
+    url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
 
 
     #Groups urls 
     url(r'^groups/$', 'students.packets.groups.groups_list', name='groups'),
     url(r'^groups/add/$', 'students.packets.groups.groups_add', name='groups_add'),
-    url(r'^groups/(?P<gid>\d+)/edit/$', 'students.packets.groups.groups_edit', name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$', 'students.packets.groups.groups_delete', name='groups_delete'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', GroupsUpdateView.as_view(), name='groups_edit'),
+    url(r'^groups/(?P<pk>\d+)/delete/$', GroupsDeleteView.as_view(), name='groups_delete'),
 
-    url(r'^visitation/$', 'students.packets.visitation.visitation_list', name='visitation'),
-    url(r'^visitation/(?P<vid>\d+)/edit/$', 'students.packets.visitation.visitation_edit', name='visitation_edit'),
+    url(r'^journal/(?P<pk>\d+)?/?$',JournalView.as_view() , name='visitation'),
+    url(r'^journal/(?P<pk>\d+)/edit/$', 'students.packets.visitation.visitation_edit', name='visitation_edit'),
+
+    url(r"^contact-admin/$", 'students.packets.contact_admin.contact_admin', name='contact_admin'),
 
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(django.contrib.admin.site.urls)),
 )
 
 if DEBUG:

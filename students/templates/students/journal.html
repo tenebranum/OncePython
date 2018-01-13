@@ -1,0 +1,82 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Посещения{% endblock meta_title %}
+
+{% block title %}Учет Посещений{% endblock title %}
+
+
+{% block container %}
+
+{% if not students %}
+
+<div class="alert alert-warning">
+	База студентов пуста.
+	<a href="{% url 'students_add' %}"> Добавьте </a> первого
+</div>
+
+{% else %}
+
+<div class="alert alert-warning">
+	Изменения сразу сохраняются в базу данных.
+	<span id="ajax-progress-indicator">Идёт сохранение...</span>
+</div>
+
+
+<p id="journal-nav" class="text-center">
+	<a href="?month={{ prev_month }}" title='Предыдущий месяц'>&larr;</a>
+	<strong>{{ month_verbose }} {{ year }} </strong>
+	<a href="?month={{ next_month }}" title="Следующий месяц">&rarr;</a>
+</p>
+
+<table class="table table-hover table-striped table-bordered" id="students-journal">
+	<thead>
+		<tr class="header">
+			<th class="num">#</th>
+			<th class="name">Студент</th>
+			{% for day in month_header %}
+			<th class="day-header">
+				{{ day.verbose }}
+				<br/>
+				{{ day.day }}
+			</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% csrf_token %}
+
+		{% for student in students %}
+		<tr>
+			<td>
+				{% if is_paginated %}
+					{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+				{% else %}
+					{{ forloop.counter }}
+				{% endif %}
+			</td>
+			<td>
+				<a title='Редактировать' target='_blank' href="{% url 'students_edit' student.id %}">{{ student.full_name }}</a>
+			</td>
+
+			{% for day in student.days %}
+			<td class="day-box">
+				<input type="checkbox" data-student-id="{{student.id}}" data-date="{{day.date}}" data-url="{{student.update_url}}" value='1'{% if day.present %} checked='checked' {% endif %} />
+			</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
+
+{% with object_list=students %}
+	{% include "students/pagination.html" %}
+{% endwith %}
+
+{% endblock container %}
+
+
+</body>
+</html>
