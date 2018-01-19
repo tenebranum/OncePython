@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
@@ -9,6 +8,9 @@ from django.views.generic import UpdateView, DeleteView
 from django.forms import ModelForm, ValidationError
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.translation import ugettext_lazy as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -50,7 +52,7 @@ class GroupsUpdateForm(ModelForm):
 	def clean_leader(self):
 		group = Group.objects.get(leader=self.instance.leader)
 		if group and self.cleaned_data['leader'].first_name != group.leader.first_name:
-			raise ValidationError( u'Студент является старостой другой группы', code = 'invalid')
+			raise ValidationError(_(u'Student is leader of another group already'), code = 'invalid')
 
 		return self.cleaned_data['leader']
 
@@ -69,10 +71,9 @@ class GroupsUpdateForm(ModelForm):
 		self.helper.field_class = 'col-sm-10'
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.layout[-1] = FormActions(
-			Submit('save_button',u'Сохранить', css_class = "btn btn-primary"),
-			Submit('cancel_button', u'Отменить', css_class = "btn btn-link")
+			Submit('save_button',_(u'Save'), css_class = "btn btn-primary"),
+			Submit('cancel_button', _(u'Cancel'), css_class = "btn btn-link")
 			)
-
 
 
 class GroupsUpdateView(UpdateView):
@@ -80,31 +81,39 @@ class GroupsUpdateView(UpdateView):
 	form_class = GroupsUpdateForm
 	template_name = "students/groups_edit.html"
 
+	@method_decorator(login_required)
+	def dispatch(self,*args,**kwargs):
+		return super(GroupsUpdateView,self).dispatch(*args,**kwargs)
 
 	def get_success_url(self):
-		return u'%s?status_message=Изменения сохранены.' % reverse('home')
+		return u'%s?status_message=%s' % (reverse('home'),_(u'Changes have been saved'))
 
 
 	def post (self,request,*args,**kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(u'%s?status_message=Изменения отменены.' % reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'),_(u'Changes canceled')))
 
 		else:
 			return super(GroupsUpdateView,self).post(request,*args,**kwargs)
+
 
 
 class GroupsDeleteView(DeleteView):
 	model = Group
 	template_name = "students/groups_delete.html"
 
+	@method_decorator(login_required)
+	def dispatch(self,*args,**kwargs):
+		super(GroupsDeleteView,self).dispatch(*args,**kwargs)
+
 	def get_success_url(self):
-		return u'%s?status_message=Группа удалена.' % reverse('home')
+		return u'%s?status_message=%s' % (reverse('home'),_(u'Group has been deleted'))
 
 
 
 
 
-
+@login_required
 def groups_add(request):
 	return HttpResponse('<h1>Group Add </h1>')
 

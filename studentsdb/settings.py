@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-LANGUAGE_CODE='ru'
+LANGUAGE_CODE='en'
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
@@ -28,6 +28,8 @@ TEMPLATE_CONTEXT_PROCESSORS = \
     global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
     "studentsdb.context_processors.students_proc",
+    "social.apps.django_app.context_processors.backends",
+    "social.apps.django_app.context_processors.login_redirect",
     "students.context_processors.groups_processor",
 )
 
@@ -40,6 +42,9 @@ ALLOWED_HOSTS = []
 
 PORTAL_URL = 'http://localhost:8000'
 
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -47,11 +52,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 ADMIN_EMAIL = 'admin@studentsdb.com'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vetal969696@gmail.com'
-EMAIL_HOST_PASSWORD = 'kava98banga'
-EMAIL_TLS = False
-EMAIL_SSL = True
+EMAIL_HOST_PASSWORD = '80639372656a'
+EMAIL_USE_TLS = True
+EMAIL_SSL = False
+
 
 
 # Application definition
@@ -65,11 +71,16 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'students',
     'crispy_forms',
+    'registration',
+    'studentsdb',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
+    'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -77,9 +88,23 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,'studentsdb','templates'),
+)
+
 ROOT_URLCONF = 'studentsdb.urls'
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
+
+
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
 
 
 LOG_FILE = os.path.join(BASE_DIR,'studentsdb.log')
@@ -114,7 +139,7 @@ LOGGING = {
     },
     'loggers':{
         'django':{
-            'handlers':['null'],
+            'handlers':['console'],
             'propagate':True,
             'level':'INFO',
         },
@@ -146,6 +171,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+REGISTRATION_OPEN = True
+
+SOCIAL_AUTH_FACEBOOK_KEY='588846734790799'
+
+SOCIAL_AUTH_FACEBOOK_SECRET='46d365b77103efd1dfe1204990e65333'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

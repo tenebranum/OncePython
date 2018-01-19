@@ -61,7 +61,7 @@ function initEditStudentForm(form,modal){
 	form.ajaxForm({
 		'dataType':'html',
 		'error':function(){
-			alert('Ошибка на сервере.');
+			alert(gettext('Server error, try later...'));
 			return false;
 		},
 		'success':function(data,status,xhr){
@@ -88,7 +88,7 @@ function initEditStudentPage(){
 			'success':function(data,status,xhr){
 
 				if (status != 'success'){
-					alert('Ошибка на сервере.');
+					alert(gettext('Server error, try later...'));
 					return false;
 				}
 				var modal = $('#myModal');
@@ -105,7 +105,7 @@ function initEditStudentPage(){
 				});
 			},
 			'error':function(){
-				alert('Ошибка на сервере');
+				alert(gettext('Server error, try later...'));
 				return false;
 			}
 		});

@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import Student
 from .models import Group , MonthJournal
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 
 class StudentFormAdmin(ModelForm):
@@ -11,7 +11,7 @@ class StudentFormAdmin(ModelForm):
 	def clean_student_group(self):
 		groups = Group.objects.filter(leader=self.instance)
 		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-			raise ValidationError( u'Студент является старостой другой группы', code = 'invalid')
+			raise ValidationError( _(u'Student is leader of another group already'), code = 'invalid')
 
 		return self.cleaned_data['student_group']
 

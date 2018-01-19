@@ -1,9 +1,11 @@
 {% load static from staticfiles %}
+{% load i18n %}
+{% load full_name %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="utf-8">
-	<title>Сервис Учета Студентов {% block meta_title %}{% endblock meta_title %}</title>
+	<title>{% trans "Students Account Service"%}{% block meta_title %}{% endblock meta_title %}</title>
 	<meta name="description" value="Система Учета Студентов Учебного Заведения">
 	<!-- include styles -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -26,33 +28,50 @@
 	 <!--logo-->
 	 <div class="row" id="header">
 
-	  <div class="col-xs-8">
-	   <h1>{% block logo %}Сервис Учета Студентов{% endblock logo %}</h1>
+	  <div class="col-xs-6">
+	   <h1>{% block logo %}{% trans "Students Account Service"%}{% endblock logo %}</h1>
 		{% block status_message %}
 	  	{% if request.GET.status_message %}
 	  	<div class="alert alert-warning" role='alert'>{{request.GET.status_message}}</div>
 	  	{% endif %}
 	  	{% endblock %} 
 	  </div>
+	  {% if user.is_authenticated %}
 	  <div class="col-xs-4" id="group-selector">
-	  	<strong>Группа:</strong>
+	  	<strong>{% trans "Group:" %}</strong>
 	  	<select>
-	  		<option value="" >Все студенты</option>
+	  		<option value="" >{% trans "All Students"%}</option>
 	  		{% for group in GROUPS %}
 	  		<option value="{{group.id}}"{% if group.selected %}selected='1'{% endif %}>{{group.name}}{% if group.leader %},{{group.leader}}{% endif %}</option>
 	  		{% endfor %}
 	  	</select>
 	  </div>
+	  <div class="col-xs-2" id="user-toolbar">
+	  	<a href="{% url 'profile'  %}">{{ user|full_name }}</a>|
+	  	<a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
+	  </div>
 
+	  {% else %}
+	  <div class="col-xs-6" id="user-toolbar">
+	  	<a href="{% url 'users:auth_login' %}">{% trans "Login" %}</a>|
+	  	<a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}">{% trans "via Facebook" %}</a>|
+	  	<a href="{% url 'users:registration_register' %}">{% trans "Register" %}</a>
+	  </div>
+	  {% endif %}
+	 </div>
 	 <!-- start subheader-->
 	 {% block subheader %}
 	 <div class ="row" id="sub-header">
 	  <div class="col-xs-12">
 	  	<ul class="nav nav-tabs" role="tablist">
-	  		<li role="presentation" {% if request.path == '/' %} class="active"{% endif %}> <a href="{% url 'home' %}">Студенты</a></li>
-	  		<li role="presentation" {% if '/journal' in request.path %} class="active"{% endif %}> <a href="{% url 'visitation' %}">Посещения</a></li>
-	  		<li role="presentation" {% if '/groups' in request.path %} class="active"{% endif %}> <a href="{% url 'groups' %}">Группы</a></li>
-	  		<li role="presentation" {% if '/contact-admin' in request.path %} class="active"{% endif %}> <a href="{% url 'contact_admin' %}">Контакт</a></li>
+	  		<li role="presentation" {% if request.path == '/' %} class="active"{% endif %}> <a href="{% url 'home' %}">{% trans "Students" %}</a></li>
+	  		{% if user.is_authenticated %}
+	  		<li role="presentation" {% if '/journal' in request.path %} class="active"{% endif %}> <a href="{% url 'visitation' %}">{% trans "Journal" %}</a></li>
+	  		{% endif %}
+	  		<li role="presentation" {% if '/groups' in request.path %} class="active"{% endif %}> <a href="{% url 'groups' %}">{% trans "Groups" %}</a></li>
+	  		{% if perms.auth.add_user %}
+	  		<li role="presentation" {% if '/contact-admin' in request.path %} class="active"{% endif %}> <a href="{% url 'contact_admin' %}">{% trans "Contact" %}</a></li>
+	  		{% endif %}
 	  	</ul>
 	  </div>
 	 </div>
@@ -71,7 +90,7 @@
 	 <!-- start footer-->
 	 <div class="row" id="footer">
 	  <div class="col-xs-12">
-	   {% block footer %}&copy; 2017 Сервис Учета Студентов{% endblock footer %}
+	   {% block footer %}&copy; 2018{% trans "Students Account Service" %}{% endblock footer %}
 	  </div>
 	 </div>
 	 <!-- end footer-->
@@ -101,6 +120,7 @@
 	<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="{% static 'js/main.js' %}" ></script>
+	<script src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
 	{% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

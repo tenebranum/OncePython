@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-18 00:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:14 packets/groups.py:55
+msgid "Student is leader of another group already"
+msgstr ""
+
+#: models.py:11 templates/students/journal.html:39
+msgid "Student"
+msgstr ""
+
+#: models.py:12 models.py:92 templates/students/base.html:65
+#: templates/students/students_list.html:7
+msgid "Students"
+msgstr ""
+
+#: models.py:17 templates/students/students_list.html:35
+msgid "Name"
+msgstr ""
+
+#: models.py:22 templates/students/students_list.html:28
+msgid "Surname"
+msgstr ""
+
+#: models.py:27 templates/students/students_add.html:36
+msgid "Middle name"
+msgstr ""
+
+#: models.py:33
+msgid "Birthday"
+msgstr ""
+
+#: models.py:37 templates/students/students_add.html:50
+#: templates/students/students_list.html:26
+msgid "Photo"
+msgstr ""
+
+#: models.py:42 templates/students/students_list.html:41
+msgid "Student ticket"
+msgstr ""
+
+#: models.py:47 models.py:74 templates/students/students_add.html:76
+msgid "Notes"
+msgstr ""
+
+#: models.py:51
+msgid "Group"
+msgstr ""
+
+#: models.py:64 packets/contact_admin.py:16
+#: templates/students/groups_list.html:26
+msgid "Title"
+msgstr ""
+
+#: models.py:67 templates/students/groups_list.html:32
+msgid "Leader"
+msgstr ""
+
+#: models.py:88
+msgid "Month journal"
+msgstr ""
+
+#: models.py:89
+msgid "Month journals"
+msgstr ""
+
+#: models.py:93
+msgid "Date"
+msgstr ""
+
+#: packets/contact_admin.py:15
+msgid "Your e-mail"
+msgstr ""
+
+#: packets/contact_admin.py:17
+msgid "Letter"
+msgstr ""
+
+#: packets/contact_admin.py:33
+msgid "Send"
+msgstr ""
+
+#: packets/contact_admin.py:52
+msgid "Mistake, try later..."
+msgstr ""
+
+#: packets/contact_admin.py:57
+msgid "Letter has been sent"
+msgstr ""
+
+#: packets/groups.py:74 packets/students.py:133
+msgid "Save"
+msgstr ""
+
+#: packets/groups.py:75 packets/students.py:134
+#: templates/students/students_add.html:83
+msgid "Cancel"
+msgstr ""
+
+#: packets/groups.py:89
+msgid "Changes have been saved"
+msgstr ""
+
+#: packets/groups.py:94
+msgid "Changes canceled"
+msgstr ""
+
+#: packets/groups.py:110
+msgid "Group has been deleted"
+msgstr ""
+
+#: packets/students.py:55 packets/students.py:61 packets/students.py:67
+#: packets/students.py:73
+msgid "This field is required"
+msgstr ""
+
+#: packets/students.py:78
+msgid "Enter date correctly (example 1984-12-30)"
+msgstr ""
+
+#: packets/students.py:88 templates/students/students_add.html:67
+msgid "Choose group"
+msgstr ""
+
+#: packets/students.py:98
+msgid "Student has been added successfully"
+msgstr ""
+
+#: packets/students.py:101
+msgid "There are mistakes in entering data"
+msgstr ""
+
+#: packets/students.py:108 packets/students.py:148 packets/students.py:152
+msgid "Changes have been canceled"
+msgstr ""
+
+#: packets/students.py:167
+msgid "Student has been deleted"
+msgstr ""
+
+#: templates/contact_admin/form.html:5 templates/contact_admin/form.html:6
+msgid "Contact admin"
+msgstr ""
+
+#: templates/contact_admin/form.html:11 templates/students/groups_edit.html:16
+#: templates/students/students_edit.html:16
+msgid "Fix mistakes"
+msgstr ""
+
+#: templates/students/base.html:7 templates/students/base.html.py:31
+#: templates/students/base.html:91
+msgid "Students Account Service"
+msgstr ""
+
+#: templates/students/base.html:40
+msgid "Group:"
+msgstr ""
+
+#: templates/students/base.html:42
+msgid "All Students"
+msgstr ""
+
+#: templates/students/base.html:50
+msgid "Logout"
+msgstr ""
+
+#: templates/students/base.html:55
+msgid "Login"
+msgstr ""
+
+#: templates/students/base.html:56
+msgid "Register"
+msgstr ""
+
+#: templates/students/base.html:67 templates/students/journal.html:7
+#: templates/students/journal.html.py:9
+#: templates/students/students_list.html:81
+msgid "Journal"
+msgstr ""
+
+#: templates/students/base.html:69 templates/students/groups_list.html:7
+msgid "Groups"
+msgstr ""
+
+#: templates/students/base.html:71
+msgid "Contact"
+msgstr ""
+
+#: templates/students/groups_delete.html:9
+#: templates/students/groups_delete.html:16
+msgid "Delete Group"
+msgstr ""
+
+#: templates/students/groups_delete.html:21
+#, python-format
+msgid "Do you want to delete group : \"%(object)s\"?"
+msgstr ""
+
+#: templates/students/groups_delete.html:22
+msgid "Yes"
+msgstr ""
+
+#: templates/students/groups_delete.html:23
+msgid "No"
+msgstr ""
+
+#: templates/students/groups_edit.html:9 templates/students/groups_edit.html:23
+msgid "Edit Group"
+msgstr ""
+
+#: templates/students/groups_list.html:9
+msgid "Groups list"
+msgstr ""
+
+#: templates/students/groups_list.html:13
+msgid "Add Group"
+msgstr ""
+
+#: templates/students/groups_list.html:35
+#: templates/students/students_list.html:47
+msgid "Actions"
+msgstr ""
+
+#: templates/students/groups_list.html:49
+#: templates/students/students_list.html:76
+msgid "Action"
+msgstr ""
+
+#: templates/students/groups_list.html:53 templates/students/journal.html:62
+#: templates/students/students_list.html:84
+msgid "Edit"
+msgstr ""
+
+#: templates/students/groups_list.html:56
+#: templates/students/students_list.html:87
+msgid "Delete"
+msgstr ""
+
+#: templates/students/journal.html:17
+msgid "Empty data base"
+msgstr ""
+
+#: templates/students/journal.html:18 templates/students/students_add.html:82
+msgid "Add"
+msgstr ""
+
+#: templates/students/journal.html:18
+msgid "first one"
+msgstr ""
+
+#: templates/students/journal.html:24
+msgid "Changes save in data base immediately."
+msgstr ""
+
+#: templates/students/journal.html:25
+msgid "Saving..."
+msgstr ""
+
+#: templates/students/journal.html:30
+msgid "Previous month"
+msgstr ""
+
+#: templates/students/journal.html:32
+msgid "Next month"
+msgstr ""
+
+#: templates/students/students_add.html:4
+#: templates/students/students_add.html:18
+#: templates/students/students_list.html:13
+msgid "Add Student"
+msgstr ""
+
+#: templates/students/students_add.html:22
+msgid "Name*"
+msgstr ""
+
+#: templates/students/students_add.html:29
+msgid "Surname*"
+msgstr ""
+
+#: templates/students/students_add.html:43
+msgid "Birthday*"
+msgstr ""
+
+#: templates/students/students_add.html:45
+msgid "example 1984-12-30"
+msgstr ""
+
+#: templates/students/students_add.html:57
+msgid "Student ticket*"
+msgstr ""
+
+#: templates/students/students_add.html:64
+msgid "Group*"
+msgstr ""
+
+#: templates/students/students_edit.html:9
+#: templates/students/students_edit.html:23
+msgid "Edit Student"
+msgstr ""
+
+#: templates/students/students_list.html:9
+msgid "Students list"
+msgstr ""

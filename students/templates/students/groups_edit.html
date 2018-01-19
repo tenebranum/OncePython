@@ -1,24 +1,26 @@
 {% extends "students/base.html" %}
 
+{% load i18n %}
+
 {% load static from staticfiles %}
 
 {% load crispy_forms_tags %}
 
-{% block meta_title %}Редактировать Группу{% endblock meta_title %}
+{% block meta_title %}{% trans "Edit Group" %}{% endblock meta_title %}
 
 {% block logo %}{% endblock logo %}
 
 {% block status_message %}
 		
     {% if form.errors %}
-    	<div class='alert alert-warning' role='alert'>Исправьте ошибки</div>
+    	<div class='alert alert-warning' role='alert'>{% trans "Fix mistakes" %}</div>
     {% endif %}
 
 {% endblock %}
 
 {% block subheader %}{% endblock subheader %}
 
-{% block title %}Редактировать Группу{% endblock title %}
+{% block title %}{% trans "Edit Group" %}{% endblock title %}
 
 {% block container %}
 	{% crispy form %}

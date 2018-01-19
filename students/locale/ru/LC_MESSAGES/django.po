@@ -1,0 +1,324 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-18 00:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: admin.py:14 packets/groups.py:55
+msgid "Student is leader of another group already"
+msgstr "Студент является старостой другой группы"
+
+#: models.py:11 templates/students/journal.html:39
+msgid "Student"
+msgstr "Студент"
+
+#: models.py:12 models.py:92 templates/students/base.html:65
+#: templates/students/students_list.html:7
+msgid "Students"
+msgstr "Студенты"
+
+#: models.py:17 templates/students/students_list.html:35
+msgid "Name"
+msgstr "Имя"
+
+#: models.py:22 templates/students/students_list.html:28
+msgid "Surname"
+msgstr "Фамилия"
+
+#: models.py:27 templates/students/students_add.html:36
+msgid "Middle name"
+msgstr "Отчество"
+
+#: models.py:33
+msgid "Birthday"
+msgstr "Дата Рождения"
+
+#: models.py:37 templates/students/students_add.html:50
+#: templates/students/students_list.html:26
+msgid "Photo"
+msgstr "Фото"
+
+#: models.py:42 templates/students/students_list.html:41
+msgid "Student ticket"
+msgstr "Студенческий билет"
+
+#: models.py:47 models.py:74 templates/students/students_add.html:76
+msgid "Notes"
+msgstr "Заметки"
+
+#: models.py:51
+msgid "Group"
+msgstr "Группа"
+
+#: models.py:64 packets/contact_admin.py:16
+#: templates/students/groups_list.html:26
+msgid "Title"
+msgstr "Название"
+
+#: models.py:67 templates/students/groups_list.html:32
+msgid "Leader"
+msgstr "Староста"
+
+#: models.py:88
+msgid "Month journal"
+msgstr "Месячный журнал"
+
+#: models.py:89
+msgid "Month journals"
+msgstr "Месячные журналы"
+
+#: models.py:93
+msgid "Date"
+msgstr "Дата"
+
+#: packets/contact_admin.py:15
+msgid "Your e-mail"
+msgstr "Ваш e-mail"
+
+#: packets/contact_admin.py:17
+msgid "Letter"
+msgstr "Письмо"
+
+#: packets/contact_admin.py:33
+msgid "Send"
+msgstr "Отправить"
+
+#: packets/contact_admin.py:52
+msgid "Mistake, try later..."
+msgstr "Ошибка, попробуйте позже..."
+
+#: packets/contact_admin.py:57
+msgid "Letter has been sent"
+msgstr "Письмо успешно отправлено"
+
+#: packets/groups.py:74 packets/students.py:133
+msgid "Save"
+msgstr "Сохранить"
+
+#: packets/groups.py:75 packets/students.py:134
+#: templates/students/students_add.html:83
+msgid "Cancel"
+msgstr "Отменить"
+
+#: packets/groups.py:89
+msgid "Changes have been saved"
+msgstr "Изменения сохранены"
+
+#: packets/groups.py:94
+#, fuzzy
+#| msgid "Changes have been canceled"
+msgid "Changes canceled"
+msgstr "Изменения отменены"
+
+#: packets/groups.py:110
+msgid "Group has been deleted"
+msgstr "Группа удалена"
+
+#: packets/students.py:55 packets/students.py:61 packets/students.py:67
+#: packets/students.py:73
+msgid "This field is required"
+msgstr "Это поле обязательное"
+
+#: packets/students.py:78
+msgid "Enter date correctly (example 1984-12-30)"
+msgstr "Введите дату в правильном формате (пр. 1984-12-30)"
+
+#: packets/students.py:88 templates/students/students_add.html:67
+msgid "Choose group"
+msgstr "Выберите группу"
+
+#: packets/students.py:98
+msgid "Student has been added successfully"
+msgstr "Студент успешно добавлен"
+
+#: packets/students.py:101
+msgid "There are mistakes in entering data"
+msgstr "Ошибки при вводе данных"
+
+#: packets/students.py:108 packets/students.py:148 packets/students.py:152
+msgid "Changes have been canceled"
+msgstr "Изменения отменены"
+
+#: packets/students.py:167
+msgid "Student has been deleted"
+msgstr "Студент удалён"
+
+#: templates/contact_admin/form.html:5 templates/contact_admin/form.html:6
+msgid "Contact admin"
+msgstr "Контакт с администратором"
+
+#: templates/contact_admin/form.html:11 templates/students/groups_edit.html:16
+#: templates/students/students_edit.html:16
+msgid "Fix mistakes"
+msgstr "Исправьте ошибки"
+
+#: templates/students/base.html:7 templates/students/base.html.py:31
+#: templates/students/base.html:91
+msgid "Students Account Service"
+msgstr "Сервис Учета Студентов"
+
+#: templates/students/base.html:40
+msgid "Group:"
+msgstr "Группа:"
+
+#: templates/students/base.html:42
+msgid "All Students"
+msgstr "Все Студенты"
+
+#: templates/students/base.html:50
+msgid "Logout"
+msgstr ""
+
+#: templates/students/base.html:55
+msgid "Login"
+msgstr ""
+
+#: templates/students/base.html:56
+msgid "Register"
+msgstr ""
+
+#: templates/students/base.html:67 templates/students/journal.html:7
+#: templates/students/journal.html.py:9
+#: templates/students/students_list.html:81
+msgid "Journal"
+msgstr "Журнал"
+
+#: templates/students/base.html:69 templates/students/groups_list.html:7
+msgid "Groups"
+msgstr "Группы"
+
+#: templates/students/base.html:71
+msgid "Contact"
+msgstr "Контакт"
+
+#: templates/students/groups_delete.html:9
+#: templates/students/groups_delete.html:16
+msgid "Delete Group"
+msgstr "Удалить Группу"
+
+#: templates/students/groups_delete.html:21
+#, python-format
+msgid "Do you want to delete group : \"%(object)s\"?"
+msgstr "Вы хотите удалить группу : \"%(object)s\"?"
+
+#: templates/students/groups_delete.html:22
+msgid "Yes"
+msgstr "Да"
+
+#: templates/students/groups_delete.html:23
+msgid "No"
+msgstr "Нет"
+
+#: templates/students/groups_edit.html:9 templates/students/groups_edit.html:23
+msgid "Edit Group"
+msgstr "Редактировать Группу"
+
+#: templates/students/groups_list.html:9
+msgid "Groups list"
+msgstr "Список групп"
+
+#: templates/students/groups_list.html:13
+msgid "Add Group"
+msgstr "Добавить группу"
+
+#: templates/students/groups_list.html:35
+#: templates/students/students_list.html:47
+msgid "Actions"
+msgstr "Действия"
+
+#: templates/students/groups_list.html:49
+#: templates/students/students_list.html:76
+msgid "Action"
+msgstr "Действие"
+
+#: templates/students/groups_list.html:53 templates/students/journal.html:62
+#: templates/students/students_list.html:84
+msgid "Edit"
+msgstr "Редактировать"
+
+#: templates/students/groups_list.html:56
+#: templates/students/students_list.html:87
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/students/journal.html:17
+msgid "Empty data base"
+msgstr "База данных пустая"
+
+#: templates/students/journal.html:18 templates/students/students_add.html:82
+msgid "Add"
+msgstr "Добавьте"
+
+#: templates/students/journal.html:18
+msgid "first one"
+msgstr "первого"
+
+#: templates/students/journal.html:24
+msgid "Changes save in data base immediately."
+msgstr "Изменения сразу сохраняются в базу данных."
+
+#: templates/students/journal.html:25
+msgid "Saving..."
+msgstr "Сохранение..."
+
+#: templates/students/journal.html:30
+msgid "Previous month"
+msgstr "Предыдущий месяц"
+
+#: templates/students/journal.html:32
+msgid "Next month"
+msgstr "Следующий месяц"
+
+#: templates/students/students_add.html:4
+#: templates/students/students_add.html:18
+#: templates/students/students_list.html:13
+msgid "Add Student"
+msgstr "Добавить Студента"
+
+#: templates/students/students_add.html:22
+msgid "Name*"
+msgstr "Имя*"
+
+#: templates/students/students_add.html:29
+msgid "Surname*"
+msgstr "Фамилия*"
+
+#: templates/students/students_add.html:43
+msgid "Birthday*"
+msgstr "Дата Рождения*"
+
+#: templates/students/students_add.html:45
+msgid "example 1984-12-30"
+msgstr "пр. 1984-12-30"
+
+#: templates/students/students_add.html:57
+msgid "Student ticket*"
+msgstr "Студенческий билет*"
+
+#: templates/students/students_add.html:64
+msgid "Group*"
+msgstr "Группа*"
+
+#: templates/students/students_edit.html:9
+#: templates/students/students_edit.html:23
+msgid "Edit Student"
+msgstr "Редактировать Студента"
+
+#: templates/students/students_list.html:9
+msgid "Students list"
+msgstr "Студенты"

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
@@ -7,44 +7,48 @@ from django.db import models
 
 class Student(models.Model):
 
+	class Meta(object):
+		verbose_name=_(u"Student")
+		verbose_name_plural=_(u"Students")
+
 	first_name = models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name=u'Имя')
+		verbose_name=_(u'Name'))
 
 	last_name = models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name=u'Фамилия')
+		verbose_name=_(u'Surname'))
 
 	middle_name = models.CharField(
 		max_length=256,
 		blank=True,
-		verbose_name=u'Отчество',
+		verbose_name=_(u'Middle name'),
 		default='')
 
 	birthday = models.DateField(
 		blank=False,
 		null=True,
-		verbose_name=u'Дата рождения')
+		verbose_name=_(u'Birthday'))
 
 	photo = models.ImageField(
 		blank=True,
-		verbose_name=u'Фото',
+		verbose_name=_(u'Photo'),
 		null=True)
 
 	ticket = models.CharField(
 		max_length=256,
-		verbose_name=u'Билет',
+		verbose_name=_(u'Student ticket'),
 		blank=False)
 
 	notes=models.TextField(
 		blank=True,
-		verbose_name=u'Дополнительные сведения',
+		verbose_name=_(u'Notes'),
 		null=True)
 
 	student_group = models.ForeignKey('Group',
-		verbose_name=u'Группа',
+		verbose_name=_(u'Group'),
 		blank=False,
 		null=True,
 		on_delete=models.PROTECT)
@@ -57,17 +61,17 @@ class Group(models.Model):
 	name = models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name=u'Название')
+		verbose_name=_(u'Title'))
 
 	leader = models.OneToOneField('Student',
-		verbose_name=u'Староста',
+		verbose_name=_(u'Leader'),
 		blank=True,
 		null=True,
 		on_delete=models.SET_NULL)
 
 	notes=models.TextField(
 		blank=True,
-		verbose_name=u'Дополнительные сведения',
+		verbose_name=_(u'Notes'),
 		null=True)
 	def __unicode__(self):
 		if self.leader:
@@ -81,12 +85,13 @@ class MonthJournal(models.Model):
 
 
 	class Meta:
-		verbose_name = u'Месячный журнал'
-		verbose_name_plural = u'Месячные журналы'
+		verbose_name = _(u'Month journal')
+		verbose_name_plural=_(u"Month journals")
 
 
-	student = models.ForeignKey('Student',verbose_name=u'Студент',blank=False,unique_for_month='date')
-	date = models.DateField(verbose_name=u'Дата',blank=False)
+	student = models.ForeignKey('Student',verbose_name=_(u'Students'),blank=False,unique_for_month='date')
+	date = models.DateField(verbose_name=_(u'Date'),blank=False)
+	days = []
 	present_day1 = models.BooleanField(default=False)
 	present_day2 = models.BooleanField(default=False)
 	present_day3 = models.BooleanField(default=False)
@@ -122,3 +127,8 @@ class MonthJournal(models.Model):
 
 	def __unicode__(self):
 		return u'%s: %d , %d' % (self.student.last_name, self.date.month, self.date.year)
+
+	def __init__(self,*args,**kwargs):
+		super(MonthJournal,self).__init__(*args,**kwargs)
+		for i in range(1,32):
+			self.days.append(False)

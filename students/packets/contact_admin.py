@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django import forms
 from django.core.mail import send_mail
@@ -7,13 +6,15 @@ from django.core.urlresolvers import reverse
 from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import permission_required
 import logging
 
 
 class ContactForm(forms.Form):
-	from_email = forms.EmailField(label=u'Ваш e-mail')
-	subject = forms.CharField(label=u'Заголовок',max_length=128)
-	message = forms.CharField(label=u'Текст сообщения', max_length=2560, widget = forms.Textarea)
+	from_email = forms.EmailField(label=_(u'Your e-mail'))
+	subject = forms.CharField(label=_(u'Title'),max_length=128)
+	message = forms.CharField(label=_(u'Letter'), max_length=2560, widget = forms.Textarea)
 
 	def __init__(self,*args,**kwargs):
 		super(ContactForm,self).__init__(*args,**kwargs)
@@ -29,11 +30,11 @@ class ContactForm(forms.Form):
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-10'
 
-		self.helper.add_input(Submit('send_button',u'Отправить'))
+		self.helper.add_input(Submit('send_button',_(u'Send')))
 
 
 
-
+@permission_required('auth.add_user')
 def contact_admin(request):
 
 	if request.method == 'POST':
@@ -48,12 +49,12 @@ def contact_admin(request):
 				send_mail(subject,message,from_email,[ADMIN_EMAIL])
 
 			except Exception:
-				message = u'Произошла ошибка, повторите попытку позже'
+				message = _(u'Mistake, try later...')
 				logger = logging.getLogger(__name__)
 				logger.exception(message)
 
 			else:
-				message = u'Письмо успешно отправлено'
+				message = _(u'Letter has been sent')
 
 			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'),message))
 

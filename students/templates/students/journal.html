@@ -1,10 +1,14 @@
 {% extends "students/base.html" %}
 
+{% load i18n %}
+
+{% load pagenav %}
+
 {% load static from staticfiles %}
 
-{% block meta_title %}Посещения{% endblock meta_title %}
+{% block meta_title %}{% trans "Journal" %}{% endblock meta_title %}
 
-{% block title %}Учет Посещений{% endblock title %}
+{% block title %}{% trans "Journal" %}{% endblock title %}
 
 
 {% block container %}
@@ -12,32 +16,32 @@
 {% if not students %}
 
 <div class="alert alert-warning">
-	База студентов пуста.
-	<a href="{% url 'students_add' %}"> Добавьте </a> первого
+	{% trans "Empty data base" %}
+	<a href="{% url 'students_add' %}"> {% trans "Add" %} </a> {% trans "first one" %}
 </div>
 
 {% else %}
 
 <div class="alert alert-warning">
-	Изменения сразу сохраняются в базу данных.
-	<span id="ajax-progress-indicator">Идёт сохранение...</span>
+	{% trans "Changes save in data base immediately." %}
+	<span id="ajax-progress-indicator">{% trans "Saving..." %}</span>
 </div>
 
 
 <p id="journal-nav" class="text-center">
-	<a href="?month={{ prev_month }}" title='Предыдущий месяц'>&larr;</a>
-	<strong>{{ month_verbose }} {{ year }} </strong>
-	<a href="?month={{ next_month }}" title="Следующий месяц">&rarr;</a>
+	<a href="?month={{ prev_month }}" title='{% trans "Previous month" %}'>&larr;</a>
+	<strong>{% trans month_verbose %} {{ year }} </strong>
+	<a href="?month={{ next_month }}" title='{% trans "Next month" %}'>&rarr;</a>
 </p>
 
 <table class="table table-hover table-striped table-bordered" id="students-journal">
 	<thead>
 		<tr class="header">
 			<th class="num">#</th>
-			<th class="name">Студент</th>
+			<th class="name">{% trans "Student" %}</th>
 			{% for day in month_header %}
 			<th class="day-header">
-				{{ day.verbose }}
+				{% trans day.verbose %}
 				<br/>
 				{{ day.day }}
 			</th>
@@ -57,7 +61,7 @@
 				{% endif %}
 			</td>
 			<td>
-				<a title='Редактировать' target='_blank' href="{% url 'students_edit' student.id %}">{{ student.full_name }}</a>
+				<a title='{% trans "Edit" %}' target='_blank' href="{% url 'students_edit' student.id %}">{{ student.full_name }}</a>
 			</td>
 
 			{% for day in student.days %}
@@ -71,9 +75,7 @@
 </table>
 {% endif %}
 
-{% with object_list=students %}
-	{% include "students/pagination.html" %}
-{% endwith %}
+{% pagenav object_list=students is_paginated=is_paginated paginator=paginator %}
 
 {% endblock container %}
 
