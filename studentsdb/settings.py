@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'registration',
     'studentsdb',
+    'django_coverage',
     'social.apps.django_app.default',
 )
 
@@ -80,7 +81,7 @@ MIDDLEWARE_CLASSES = (
     'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    #'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',

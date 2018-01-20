@@ -114,7 +114,7 @@ def students_add(request):
 class StudentUpdateForm(ModelForm):
 	class Meta:
 		model = Student
-		fields = ['first_name','last_name','middle_name','birthday','ticket','student_group', 'photo']
+		fields = ['first_name','last_name','middle_name','birthday','ticket','student_group']
 
 	def __init__(self,*args,**kwargs):
 		super(StudentUpdateForm,self).__init__(*args,**kwargs)
@@ -129,7 +129,7 @@ class StudentUpdateForm(ModelForm):
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-10'
 
-		self.helper.layout[-1] = FormActions(
+		self.helper.layout[0] = FormActions(
 			Submit('add_button',_(u'Save'),css_class='btn btn-primary'),
 			Submit('cancel_button',_(u'Cancel'),css_class='btn btn-link')
 			)
